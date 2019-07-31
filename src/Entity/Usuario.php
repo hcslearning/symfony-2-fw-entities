@@ -3,14 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ClienteRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
  */
-class Cliente implements UserInterface
+class Usuario implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -22,7 +20,7 @@ class Cliente implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private $usuario;
 
     /**
      * @ORM\Column(type="json")
@@ -35,34 +33,19 @@ class Cliente implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nombre;
-
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $rut;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
-    private $telefono;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getUsuario(): ?string
     {
-        return $this->email;
+        return $this->usuario;
     }
 
-    public function setEmail(string $email): self
+    public function setUsuario(string $usuario): self
     {
-        $this->email = $email;
+        $this->usuario = $usuario;
 
         return $this;
     }
@@ -74,7 +57,7 @@ class Cliente implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->usuario;
     }
 
     /**
@@ -85,7 +68,7 @@ class Cliente implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-        $roles[] = 'ROLE_CLIENTE';
+        $roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);
     }
@@ -128,45 +111,9 @@ class Cliente implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): self
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    public function getRut(): ?string
-    {
-        return $this->rut;
-    }
-
-    public function setRut(string $rut): self
-    {
-        $this->rut = $rut;
-
-        return $this;
-    }
-
-    public function getTelefono(): ?string
-    {
-        return $this->telefono;
-    }
-
-    public function setTelefono(?string $telefono): self
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
     
     public function __toString() {
-        return $this->email;
+        return $this->usuario;
     }
 
 }

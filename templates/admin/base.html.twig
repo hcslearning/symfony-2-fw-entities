@@ -7,13 +7,17 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {% endblock %}
     </head>
-    <body>
+    <body style="background-color: greenyellow;">
+                
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ path('app_login') }}">Login</a>
+                <a class="nav-link active" href="{{ path('admin') }}">Admin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ path('admin') }}">Admin</a>
+                <a class="nav-link active" href="{{ path('admin_saludo') }}">Saludo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Login</a>
             </li>
         </ul>
 

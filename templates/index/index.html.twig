@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+    Bienvenido {{ app.user.nombre|default('Anónimo') }} <a href="{{ path('app_logout') }}">Logout</a>
+{% endblock %}
